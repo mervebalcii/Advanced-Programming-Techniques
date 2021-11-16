@@ -1,0 +1,72 @@
+<html lang="en-US"><head>
+    <meta charset="UTF-8">
+    <title>body mass index</title>
+
+  <style>
+    body { max-width: 520x; }
+    pre  { overflow-x: auto; }
+    input { width: 50px }
+  </style>
+</head>
+
+<body>
+
+<h2 id="title">body mass index</h2>
+weigh = <input type="number" id="ex" value="60" onchange="calculate()">
+&emsp;
+height = <input type="number" id="hgt" value="145" onchange="calculate()">
+&emsp;
+<span id="res">P(weigh, height) = 28,5</span>
+<pre id="out"> </pre>
+
+<hr>
+<b>Sample code</b>
+<pre id="sample"> </pre>
+
+<hr>
+<p>Ref: <a href="https://calcpark.com/bmi-calculator/" target="NewTab">BMI</a>
+
+
+</p>
+<p>
+<img src="bmi.png" width="600" height="400"/>
+</p>
+
+<script>
+"use strict";
+function BMI(weigh, height, f=2) {
+    let g = weigh / ((height * height)/ 10000)
+    return Math.round(g.toFixed(f))
+}
+function calculate() {
+        
+    let weigh= Number(ex.value)
+    if (!Number.isInteger(weigh)) {
+       weigh = Math.round(weigh); ex.value = weigh
+    }
+    let height = Number(hgt.value)
+    res.innerText = "P(weigh, height) = "+BMI(weigh, height)
+}
+function doTable() {
+    const L = [145, 150, 155, 160, 165, 170]
+    let a = L.map((height) => 'height='+height)
+    let str = header(a)
+    for (let weigh=60; weigh<=76; weigh=weigh+2) { 
+       let a = L.map((height) => BMI(weigh, height))
+       str += oneLine(a, weigh)
+    }
+    return str
+}
+let header  = (a) => '          '+ a.join('    ') 
+let oneLine = (a, weigh) => '\nweigh='+weigh+'      '+ a.join('            ')
+    
+    title.innerText = document.title
+    sample.innerText = BMI+'\n'+doTable
+    calculate()
+    out.innerText = doTable()
+    
+</script>
+
+
+
+</body></html>

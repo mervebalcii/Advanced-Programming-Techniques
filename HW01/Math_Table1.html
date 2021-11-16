@@ -12,11 +12,11 @@
 <body>
 
 <h2 id="title">body mass index</h2>
-weigh = <input type="number" id="ex" value="110" onchange="calculate()">
+weigh = <input type="number" id="ex" value="60" onchange="calculate()">
 &emsp;
-height = <input type="number" id="hgt" value="135" onchange="calculate()">
+height = <input type="number" id="hgt" value="145" onchange="calculate()">
 &emsp;
-<span id="res">P(weigh, height) = 60</span>
+<span id="res">P(weigh, height) = 28,5</span>
 <pre id="out"> </pre>
 
 <hr>
@@ -24,7 +24,12 @@ height = <input type="number" id="hgt" value="135" onchange="calculate()">
 <pre id="sample"> </pre>
 
 <hr>
-<p>Ref: <a href="https://lh3.googleusercontent.com/proxy/E2XMPB1OwlR96Z-1H3XzYacHe2DDEaQPRMgdqwfs6rudCGD1nMf3u7xO-HY9vgpQATjj6_USKNGPeNr7rwfbMAdaUg" target="NewTab">BMI</a>
+<p>Ref: <a href="https://calcpark.com/bmi-calculator/" target="NewTab">BMI</a>
+
+
+</p>
+<p>
+<img src="bmi.png" width="600" height="400"/>
 </p>
 
 <script>
@@ -43,10 +48,10 @@ function calculate() {
     res.innerText = "P(weigh, height) = "+BMI(weigh, height)
 }
 function doTable() {
-    const L = [135, 140, 145, 150, 155, 170]
+    const L = [145, 150, 155, 160, 165, 170]
     let a = L.map((height) => 'height='+height)
     let str = header(a)
-    for (let weigh=110; weigh>=70; weigh=weigh-5) { 
+    for (let weigh=60; weigh<=76; weigh=weigh+2) { 
        let a = L.map((height) => BMI(weigh, height))
        str += oneLine(a, weigh)
     }
@@ -59,6 +64,7 @@ let oneLine = (a, weigh) => '\nweigh='+weigh+'      '+ a.join('            ')
     sample.innerText = BMI+'\n'+doTable
     calculate()
     out.innerText = doTable()
+    
 </script>
 
 

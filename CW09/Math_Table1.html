@@ -24,24 +24,25 @@ height = <input type="number" id="hgt" value="145" onchange="calculate()">
 <pre id="sample"> </pre>
 
 <hr>
+<p>Ref: <a href="https://calcpark.com/bmi-calculator/" target="NewTab">BMI</a>
 
+
+</p>
 <p>
 <img src="bmi.png" width="600" height="400"/>
-</p>
-    <p>Ref: <a href="https://calcpark.com/bmi-calculator/" target="NewTab">BMI</a>
 </p>
 
 <script>
 "use strict";
-function BMI(weigh, height, f=2) {
+function BMI(weigh, height, f=1) {
     let g = weigh / ((height * height)/ 10000)
-    return Math.round(g.toFixed(f))
+    return (g.toFixed(f))
 }
 function calculate() {
         
     let weigh= Number(ex.value)
     if (!Number.isInteger(weigh)) {
-       weigh = Math.round(weigh); ex.value = weigh
+      weigh = Math.round(weigh); ex.value = weigh
     }
     let height = Number(hgt.value)
     res.innerText = "P(weigh, height) = "+BMI(weigh, height)
@@ -56,8 +57,8 @@ function doTable() {
     }
     return str
 }
-let header  = (a) => '          '+ a.join('    ') 
-let oneLine = (a, weigh) => '\nweigh='+weigh+'      '+ a.join('            ')
+let header  = (a) => '          '+ a.join('       ') 
+let oneLine = (a, weigh) => '\nweigh='+weigh+'      '+ a.join('             ')
     
     title.innerText = document.title
     sample.innerText = BMI+'\n'+doTable

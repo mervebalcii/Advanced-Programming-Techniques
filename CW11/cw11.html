@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel = "icon" href = "https://mervebalcii.github.io/Advanced-Programming-Techniques
+/images.png">
+  
+  <title>GitHub Users</title>
+  
+  <style>
+    body {
+        max-width: 330px;
+    }
+    img {
+        padding-right: 12px; 
+        width: 330px;
+    }
+  </style>
+</head>
+
+
+<body>
+
+<h2 id=title></h2>
+<input type=text id=usr value=mervebalcii onChange="readUser()">
+<p id=out></p>
+<b>Sample code</b>
+<pre id="sample"> </pre>
+<hr />
+<script>
+"use strict";
+function error(t) {
+    out.style.color = 'red'
+    out.innerText = t; throw t
+}
+
+    async function toJSON(url) {
+  try {
+    let r = await fetch(url)
+    if (!r.ok) throw cause(r.status)
+    return r.json()
+  } catch (e) {
+    error(e)
+  }
+}
+async function readUser() {
+    const BR = "<BR>", 
+      URL = "https://api.github.com/users/"
+    let u = await toJSON(URL+usr.value)
+    if (!u || !u.login) 
+    error(usr.value+' not found')
+     
+    out.style.color = ''
+    out.innerHTML = ''
+    
+    
+    let i = document.createElement("img")
+    i.src = u.avatar_url
+    i.align = "left"
+    out.appendChild(i)
+    
+    let s = (u.name? u.name : u.login);
+    s=s.bold();
+    let log= u.login;
+    let locat= u.location;
+    let comp=u.company;
+    let m = document.createElement("a")
+    m.href = u.blog
+    m.target = "NewTab"
+    m.innerText = u.blog
+    out.innerHTML +="Name: " +s+BR+ "Username: " + log+BR+ "Company:  " +comp +BR + "Location : "+locat+BR + "";    
+    out.appendChild(m)
+    
+    
+    
+}
+    title.innerText = document.title
+    sample.innerText = toJSON +'\n'+ readUser
+    out.innerText = "Reading data"
+    readUser()
+</script>
+
+</body>
+</html>

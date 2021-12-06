@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+ 
+  <script 
+     
+  src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
+  
+   <div id ="container" class="cont">
+  <div id ="animate" class="anim"></div>
+ </div>
+  
+
+   <style>
+    #container {
+	width: 400px;
+	height: 400px;
+	position: relative;
+	background: pink;	
+}
+       
+#animate {
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	background: black;
+}
+       
+    </style>
+    <script>
+        
+   
+var elem = document.querySelector(".anim"); 
+var t1 = new TimelineMax();
+        var duration = 0.0;
+function goCrossLeft() {
+	var pos = 0;
+	var id = setInterval(frame, 3);
+	function frame() {
+		if (pos === 340) {     
+			clearInterval(id); 
+            
+            t1.to(elem, duration, {
+            
+               width: 60,
+               height: 60, 
+              background: "red",
+             
+})
+          
+			goTop();
+		} else {
+			pos++;
+			elem.style.top = pos + 'px'; 
+			elem.style.left = pos + 'px';
+		}
+	}
+    
+}
+        
+            
+            
+            
+        
+function goTop() {
+	var pos = 350;
+	var id = setInterval(frameTop, 3);
+	function frameTop() {
+		if (pos === 0) {
+			clearInterval(id);
+             t1.to(elem, duration, {
+               width: 50,
+               height: 50, 
+              background: "purple",
+             
+})
+			goLeft();
+		} else {
+			pos--;
+			elem.style.top = pos + 'px';
+		}
+	}
+}
+function goLeft() {
+	var pos = 360;
+	var id = setInterval(frame, 5);
+	function frame() {
+		if (pos === 0) {
+			clearInterval(id);
+             t1.to(elem, duration, {
+               width: 40,
+               height: 40, 
+              background: "blue",
+             
+})
+			goBottom();
+		} else {
+			pos--;
+			elem.style.left = pos + 'px';
+		}
+	}
+}
+function goBottom() {
+	var pos = 0;
+	var id = setInterval(frameTop, 5);
+	function frameTop() {
+		if (pos === 345) {
+			clearInterval(id);
+             t1.to(elem, duration, {
+               width: 55,
+               height: 55, 
+              background: "green",
+             
+})
+			goRight();
+		} else {
+			pos++;
+			elem.style.top = pos + 'px';
+		}
+	}
+}
+function goRight() {
+	var pos = 0;
+	var id = setInterval(frame, 5);
+	function frame() {
+		if (pos === 365) {
+			clearInterval(id);
+             t1.to(elem, duration, {
+               width: 35,
+               height: 35, 
+              background: "orange",
+             
+})
+			goCrossRight();
+		} else {
+			pos++;
+			elem.style.left = pos + 'px';
+		}
+	}
+}
+function goCrossRight() {
+	var pos = 350;
+	var id = setInterval(frame, 5);
+	function frame() {
+		if (pos === 0) {
+			clearInterval(id);
+             t1.to(elem, duration, {
+               width: 50,
+               height: 50, 
+              background: "black",
+             
+})
+			goCrossLeft();
+		} else {
+			pos--;
+			elem.style.top = pos + 'px'; 
+			elem.style.left = pos + 'px';
+		}
+	}
+}
+        
+  
+
+        
+document.addEventListener("DOMContentLoaded", function(event) {
+    goCrossLeft();
+});
+
+
+
+    
+    </script>
+</body>
+</html>

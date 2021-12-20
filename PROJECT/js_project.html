@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
-	<link rel="icon" sizes="192x192" href="paper.png">
   <body>
+   
     <h1>Rock, Paper, Scissors</h1>
     <h2 id="minutes"  style="float: right;"> time :  <text id="seconds">0</text></h2>
    
@@ -17,13 +17,15 @@
            
        
         <div id = "buttons">
-    <button id ="Scalpellus">Scissors</button>
-    <button id ="Lapis">Rock</button>
-    <button id ="Papyrus">Paper</button>
+    <button id ="Scissors">Scissors</button>
+    <button id ="Rock">Rock</button>
+    <button id ="Paper">Paper</button>
    
       
     </div >
         <div>
+        
+        
         <input type="text" id="txtAd" style="float: left" value=" " >
          
     </div>
@@ -60,10 +62,10 @@ p {
   display: inline-block;
 }
         
-      
         
 button {
-margin-right: inherit;
+  
+    margin-right: inherit;
   cursor: pointer;
   outline: none;
   padding: 10px;
@@ -76,26 +78,27 @@ margin-right: inherit;
      
   display:block;
 }
-#Lapis:hover {
+#Rock:hover {
   box-shadow: 0px 15px 20px #FF7F50;
   transform: translateY(-5px);
   background-color: #FF7F50;
   color: white;
 }
 
-#Papyrus:hover {
+#Paper:hover {
   box-shadow: 0px 15px 20px #6495ED;
   transform: translateY(-5px);
   background-color: #6495ED;
 }
 
-#Scalpellus:hover {
+#Scissors:hover {
   box-shadow: 0px 15px 20px #A0522D;
   transform: translateY(-5px);
   background-color:	#A0522D;
   color: white;
 }
 #buttons {
+  
   display:block;
 }
 
@@ -107,7 +110,7 @@ margin-right: inherit;
   margin: 50px;
   display: inline-block;
 }
-       #playAgain {
+        #playAgain {
              box-shadow: 0px 15px 20px rgb(0,0,0);
   
   transform: translateY(-5px);
@@ -143,7 +146,6 @@ margin-top: -90px;
        setInterval(setTime,1000 );
       
      
-      //“Lapis, Papyrus, Scalpellus”
      
       var ad=document.getElementById("txtAd");
       var minutesLabel = document.getElementById("minutes");
@@ -275,13 +277,13 @@ let cpu = {
 };
 
 
-document.querySelector('#Lapis').addEventListener('click', function() {
+document.querySelector('#Rock').addEventListener('click', function() {
   play(player,cpu,"Rock",options);
 });
-document.querySelector('#Papyrus').addEventListener('click', function() {
+document.querySelector('#Paper').addEventListener('click', function() {
   play(player,cpu,"Paper",options);
 });
-document.querySelector('#Scalpellus').addEventListener('click', function() {
+document.querySelector('#Scissors').addEventListener('click', function() {
   play(player,cpu,"Scissors",options);
 });
       const reset = document.querySelector("#playAgain");
@@ -292,7 +294,8 @@ function resetGame() {
     
      location.reload();
 }
-    
+     
+  
           
     
     

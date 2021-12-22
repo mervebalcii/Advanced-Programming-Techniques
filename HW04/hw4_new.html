@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+	<link rel="icon" sizes="192x192" href="paper.png">
+  <body>
+   
+    <h1>Rock, Paper, Scissors</h1>
+	 <h3 id="aaa"  style="margin: auto;"> write score to input, the game over at this score </h3>
+    <h2 id="minutes"  style="float: right;"> time :  <text id="seconds">0</text></h2>
+   
+  
+   
+      
+          <img id = "pp" style="margin-right: 20px" src="scissors.png" width="60" height="60" />
+            <img src="rock.jpg" style="margin-right:25px" width="60" height="60" />
+             <img src=" paper.png"  width="60" height="60" />
+           
+       
+        <div id = "buttons">
+    <button id ="Scissors">Scissors</button>
+    <button id ="Rock">Rock</button>
+    <button id ="Paper">Paper</button>
+   
+      
+    </div >
+        <div>
+        
+        
+        <input type="text" id="txtAd" style="float: left" value=" " >
+         
+    </div>
+        <p id="choice"></p>
+    <p id="result"></p>
+    <div>
+         <button id="playAgain"> Restart</button>
+         
+    </div>
+   
+
+    <div id="score">
+    <h2 id="player">Player : 0</h2>
+    <h2 id="cpu">CPU : 0</h2>
+    </div>
+     </body>
+    <style>
+      
+      @font-face {
+  font-family: "Antrf";
+  src: url('https://cdn.rawgit.com/TypeNetwork/Decovar/620fb4ea/fonts/DecovarAlpha-VF.ttf') format('truetype');
+}
+
+body {
+  background: #3CB371;
+  margin:0;
+  text-align:center;
+      max-width: 480px;
+}
+h1,h2,p{
+  font-family'Antrf';
+}
+p {
+  display: inline-block;
+}
+        
+        
+button {
+  
+    margin-right: inherit;
+  cursor: pointer;
+  outline: none;
+  padding: 10px;
+  margin: 13px;
+  width: 13%;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+#result {
+     
+  display:block;
+}
+#Rock:hover {
+  box-shadow: 0px 15px 20px #FF7F50;
+  transform: translateY(-5px);
+  background-color: #FF7F50;
+  color: white;
+}
+
+#Paper:hover {
+  box-shadow: 0px 15px 20px #6495ED;
+  transform: translateY(-5px);
+  background-color: #6495ED;
+}
+
+#Scissors:hover {
+  box-shadow: 0px 15px 20px #A0522D;
+  transform: translateY(-5px);
+  background-color:	#A0522D;
+  color: white;
+}
+#buttons {
+  
+  display:block;
+}
+
+#player {
+  margin: 50px;
+  display: inline-block;
+}
+#cpu {
+  margin: 50px;
+  display: inline-block;
+}
+        #playAgain {
+             box-shadow: 0px 15px 20px rgb(0,0,0);
+  
+  transform: translateY(-5px);
+            transform: translateX(-30px);
+  background-color: rgb(0,0,0);
+  color: white;
+margin-bottom: 30px;
+margin-top: 30px;
+   
+
+}
+        #txtAd {
+ 
+  color: black;
+ display: block;
+margin-left: 5px;
+width:40px;
+height: 26px;
+float: left;
+display: block;
+margin-bottom: 30px;
+margin-top: -90px;
+            
+           
+ 
+}
+        
+      
+      </style>
+ 
+  <script>
+    "use strict";
+      
+      
+     
+     
+      var ad=document.getElementById("txtAd");
+      var minutesLabel = document.getElementById("minutes");
+var secondsLabel = document.getElementById("seconds");
+let movesContainer = document.querySelector('.moves');
+var totalSeconds = 0;
+
+function setTime() {
+  totalSeconds++;
+  secondsLabel.innerHTML =totalSeconds;
+  }
+
+let computerChooses = (options) => {
+  return options[Math.floor(Math.random() * 3)];
+}
+let playerScore = 0;
+let computerScore = 0;
+
+let play = (player, cpu, choice,options) =>{
+    
+   
+    
+  player.choice = choice;
+  cpu.choice = computerChooses(options);
+  document.querySelector("#choice").innerHTML="You chose "+choice+", CPU chose "+cpu.choice;
+    
+  
+  if (player.choice === options[0]) {
+      if (cpu.choice === options[0]) {
+        console.log("Tie Game!");
+        document.querySelector("#result").innerHTML="Tie Game!";
+      }
+      else if (cpu.choice == options[2]) {
+        player.score=player.score+1;
+        document.querySelector('#player').innerHTML = 'Player : '+(player.score);
+         document.querySelector("#result").innerHTML="You Win!";
+           
+        
+      }
+      else {
+     document.querySelector("#result").innerHTML="CPU Win!";
+        cpu.score=cpu.score+1;
+        document.querySelector('#cpu').innerHTML = 'CPU : '+(cpu.score);
+         
+            
+      }
+    
+	
+      
+  }
+    
+     
+    
+  else if (player.choice === options[1]) {
+    if (cpu.choice === options[0]) {
+        console.log("Player Win!");
+        player.score=player.score+1;
+        document.querySelector('#player').innerHTML = 'Player : '+(player.score);
+      document.querySelector("#result").innerHTML="You Win!";
+      }
+      else if (cpu.choice == options[1]) {
+        console.log("Tie Game!");
+   document.querySelector("#result").innerHTML="Tie Game!";
+      }
+      else {
+        console.log("CPU Win!");
+        cpu.score=cpu.score+1;
+        document.querySelector('#cpu').innerHTML = 'CPU : '+(cpu.score);        document.querySelector("#result").innerHTML="CPU Win!";
+      }
+  }
+  else if (player.choice === options[2]) {
+    if (cpu.choice === options[0]) {
+        console.log("CPU Win!");
+        cpu.score=cpu.score+1;
+        document.querySelector('#cpu').innerHTML = 'CPU : '+(cpu.score);
+      document.querySelector("#result").innerHTML="CPU Win!";
+      
+      }
+      else if (cpu.choice == options[1]) {
+        console.log("Player Win!");
+        player.score=player.score+1;
+        document.querySelector('#player').innerHTML = 'Player : '+(player.score);
+        document.querySelector("#result").innerHTML="You Win!";
+      }
+      else {
+        console.log("Tie Game!");
+   document.querySelector("#result").innerHTML="Tie Game!";
+      }
+       
+     
+        
+  }
+    
+      if (player.score == ad.value) {
+          clearInterval()
+        alert("You won the game!!");
+        alert("the game will start again");
+           resetGame();
+          
+
+    } else if (cpu.score == ad.value) {
+        clearInterval()
+        alert("Sorry! You lost. :(")
+        
+          alert("the game will start again");
+         resetGame();
+    } else if (player.score > ad.value || cpu.score > ad.value) {
+         clearInterval()
+         alert("the game start again");    
+         resetGame();
+    
+}
+        
+
+    
+}
+const options = ["Rock","Paper","Scissors"];
+let player = {
+  score: 0,
+  choice: ""
+};
+let cpu = {
+  score: 0,
+  choice: ""
+};
+
+/*
+document.querySelector('#Rock').addEventListener('click', function() {
+  play(player,cpu,"Rock",options);
+});
+document.querySelector('#Paper').addEventListener('click', function() {
+  play(player,cpu,"Paper",options);
+});
+document.querySelector('#Scissors').addEventListener('click', function() {
+  play(player,cpu,"Scissors",options);
+});
+      const reset = document.querySelector("#playAgain");
+reset.addEventListener('click', resetGame);
+*/
+//resets score count and updates
+function resetGame() {
+    
+     location.reload();
+}
+     
+  
+          
+    
+    
+    </script>
+</html>

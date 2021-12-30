@@ -124,18 +124,18 @@ function showCourse(id) {
         report(id+": ", a.length+" students", a);
         report("time: " + crsMap.get(id).time + "\ndate: "
                +  crsMap.get(id).date)}
-    else report("No students in "+id);
+    else report(id + " Course does not exist");
     return a
 }
 function randomStd() {
-    let keys = [...stdMap.keys()]  //Iterable
+    let keys = [...stdMap.keys()]  
     console.assert(keys.length == stdMap.size)
     let i = Math.trunc(keys.length * Math.random());
     let b = stdMap.get(keys[i]);
     report("Random: ", b.id);
     return b
 }
-function findBest() { //the best gpa in stdMap
+function findBest() {
     let best = 0 
     for (let s of stdMap.values()){
         if(s.gpa > best){

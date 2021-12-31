@@ -7,7 +7,7 @@
   <body>
    
     <h1>Rock, Paper, Scissors</h1>
-	 <h3 id="aaa"  style="margin: auto;"> write score to input, the game over at this score </h3>
+	
     <h2 id="minutes"  style="float: right;"> time :  <text id="seconds">0</text></h2>
    
   
@@ -57,13 +57,21 @@ body {
   text-align:center;
       max-width: 480px;
 }
-h1,h2,p{
+h2,p{
   font-family'Antrf';
+    
 }
+        h1{
+             font-family'Antrf';
+            transform: translateX(-38px);
+            
+        }               
+        
+
 p {
   display: inline-block;
+    margin-right: 80px
 }
-        
         
 button {
   
@@ -107,6 +115,7 @@ button {
 #player {
   margin: 50px;
   display: inline-block;
+     transform: translateX(-38px);
 }
 #cpu {
   margin: 50px;
@@ -124,21 +133,7 @@ margin-top: 30px;
    
 
 }
-        #txtAd {
- 
-  color: black;
- display: block;
-margin-left: 5px;
-width:40px;
-height: 26px;
-float: left;
-display: block;
-margin-bottom: 30px;
-margin-top: -90px;
-            
-           
- 
-}
+       
         
       
       </style>
@@ -149,7 +144,7 @@ margin-top: -90px;
       
      
      
-      var ad=document.getElementById("txtAd");
+    
       var minutesLabel = document.getElementById("minutes");
 var secondsLabel = document.getElementById("seconds");
 let movesContainer = document.querySelector('.moves');
@@ -169,10 +164,7 @@ let computerScore = 0;
 let play = (player, cpu, choice,options) =>{
     
    
-    if(ad.value==null){
-         alert("Please enter value");
-        
-    }else{
+  {
     
   player.choice = choice;
   cpu.choice = computerChooses(options);
@@ -245,20 +237,20 @@ let play = (player, cpu, choice,options) =>{
         
   }
     
-      if (player.score == ad.value) {
+     if (player.score == 5) {
           clearInterval()
         alert("You won the game!!");
         alert("the game will start again");
            resetGame();
           
 
-    } else if (cpu.score == ad.value) {
+    } else if (cpu.score == 5) {
         clearInterval()
         alert("Sorry! You lost. :(")
         
           alert("the game will start again");
          resetGame();
-    } else if (player.score > ad.value || cpu.score > ad.value) {
+    } else if (player.score > 5 || cpu.score > 5) {
          clearInterval()
          alert("the game start again");    
          resetGame();

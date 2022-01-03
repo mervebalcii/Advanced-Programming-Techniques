@@ -3,19 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width">
-	<link rel="icon" sizes="192x192" href="paper.png">
+  <link rel="icon" sizes="192x192" href="paper.png">
+   
+    </head>
   <body>
+ 
+    <h1>Rock, Paper, Scissors </h1>
    
-    <h1>Rock, Paper, Scissors</h1>
-	
     <h2 id="minutes"  style="float: right;"> time :  <text id="seconds">0</text></h2>
-   
-  
+     
+      
    
       
-          <img id = "pp" style="margin-right: 20px" src="scissors.png" width="60" height="60" />
-            <img src="rock.jpg" style="margin-right:25px" width="60" height="60" />
+          <img id = "pp" style="margin-right: 20px;"   src="scissors.png" width="60" height="60" />
+            <img src="rock.jpg" id="rr" style="margin-right:25px" width="60" height="60" />
              <img src=" paper.png"  width="60" height="60" />
+           
+          
            
        
         <div id = "buttons">
@@ -25,8 +29,12 @@
    
       
     </div >
+  <img class="im" src="" alt="resim1" width= "60" height="60" style="visibility: hidden" />
+       <img class="im2" src="" alt="resim2" width= "60" height="60" style="visibility: hidden" />
+       
         
-        <p id="choice"></p>
+         <p id="choice"></p>
+   
     <p id="result"></p>
     <div>
          <button id="playAgain"> Restart</button>
@@ -38,12 +46,13 @@
     <h2 id="player">Player : 0</h2>
     <h2 id="cpu">CPU : 0</h2>
     </div>
-     </body>
+     
     <style>
       
       @font-face {
   font-family: "Antrf";
   src: url('https://cdn.rawgit.com/TypeNetwork/Decovar/620fb4ea/fonts/DecovarAlpha-VF.ttf') format('truetype');
+         
 }
 
 body {
@@ -68,9 +77,10 @@ p {
     margin-right: 80px
 }
         
+        
 button {
-  
-    margin-right: inherit;
+ 
+   margin-right: inherit;
   cursor: pointer;
   outline: none;
   padding: 10px;
@@ -79,10 +89,14 @@ button {
   border-radius: 45px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
+         
 #result {
-     
-  display:block;
+
+  display: block;
+  
 }
+       
+        
 #Rock:hover {
   box-shadow: 0px 15px 20px #FF7F50;
   transform: translateY(-5px);
@@ -104,6 +118,7 @@ button {
 }
 #buttons {
   
+  
   display:block;
 }
 
@@ -119,8 +134,7 @@ button {
         #playAgain {
              box-shadow: 0px 15px 20px rgb(0,0,0);
   
-  transform: translateY(-5px);
-            transform: translateX(-30px);
+  transform: translateX(-38px);
   background-color: rgb(0,0,0);
   color: white;
 margin-bottom: 30px;
@@ -128,18 +142,19 @@ margin-top: 30px;
    
 
 }
-       
         
       
       </style>
  
   <script>
+       window.onload = function() {
+      
     "use strict";
        setInterval(setTime,1000 );
       
      
      
-    
+     
       var minutesLabel = document.getElementById("minutes");
 var secondsLabel = document.getElementById("seconds");
 let movesContainer = document.querySelector('.moves');
@@ -153,9 +168,10 @@ function setTime() {
 let computerChooses = (options) => {
   return options[Math.floor(Math.random() * 3)];
 }
+
 let playerScore = 0;
 let computerScore = 0;
-
+var newImage;
 let play = (player, cpu, choice,options) =>{
     
    
@@ -163,25 +179,53 @@ let play = (player, cpu, choice,options) =>{
     
   player.choice = choice;
   cpu.choice = computerChooses(options);
-  document.querySelector("#choice").innerHTML="You chose "+choice+", CPU chose "+cpu.choice;
+ // document.querySelector("#choice").innerHTML="You chose "+choice+", CPU chose "+cpu.choice ;
+      
+    
     
   
   if (player.choice === options[0]) {
       if (cpu.choice === options[0]) {
         console.log("Tie Game!");
-        document.querySelector("#result").innerHTML="Tie Game!";
+          
+          document.querySelector(".im").style.visibility="visible";
+          document.querySelector(".im2").style.visibility="visible";
+          
+     document.querySelector("#result").innerHTML="Tie Game!";
+         
+       document.querySelector(".im").src = "rock.jpg";
+          document.querySelector(".im2").src = "rock.jpg";
+          
+          
+        
       }
       else if (cpu.choice == options[2]) {
+          
+          document.querySelector(".im").style.visibility="visible";
+          document.querySelector(".im2").style.visibility="visible";
+          
         player.score=player.score+1;
         document.querySelector('#player').innerHTML = 'Player : '+(player.score);
-         document.querySelector("#result").innerHTML="You Win!";
-           
+          
+          
+          
+         document.querySelector("#result").innerHTML=" You Win!";
+          
+          document.querySelector(".im").src = "rock.jpg";
+          document.querySelector(".im2").src = "scissors.png";
+            
         
       }
       else {
+          
+          document.querySelector(".im").style.visibility="visible";
+          document.querySelector(".im2").style.visibility="visible";
+          
      document.querySelector("#result").innerHTML="CPU Win!";
         cpu.score=cpu.score+1;
         document.querySelector('#cpu').innerHTML = 'CPU : '+(cpu.score);
+           document.querySelector(".im").src = "rock.jpg";
+           document.querySelector(".im2").src = "paper.png";
          
             
       }
@@ -194,45 +238,88 @@ let play = (player, cpu, choice,options) =>{
     
   else if (player.choice === options[1]) {
     if (cpu.choice === options[0]) {
+        
+        document.querySelector(".im").style.visibility="visible";
+          document.querySelector(".im2").style.visibility="visible";
+        
         console.log("Player Win!");
         player.score=player.score+1;
         document.querySelector('#player').innerHTML = 'Player : '+(player.score);
       document.querySelector("#result").innerHTML="You Win!";
+        
+         document.querySelector(".im").src = "paper.png";
+          document.querySelector(".im2").src = "rock.jpg";
+        
       }
       else if (cpu.choice == options[1]) {
+          
+          document.querySelector(".im").style.visibility="visible";
+          document.querySelector(".im2").style.visibility="visible";
+          
         console.log("Tie Game!");
    document.querySelector("#result").innerHTML="Tie Game!";
+           document.querySelector(".im").src = "paper.png";
+          document.querySelector(".im2").src = "paper.png";
+          
       }
       else {
+          
+          document.querySelector(".im").style.visibility="visible";
+          document.querySelector(".im2").style.visibility="visible";
+          
         console.log("CPU Win!");
         cpu.score=cpu.score+1;
-        document.querySelector('#cpu').innerHTML = 'CPU : '+(cpu.score);        document.querySelector("#result").innerHTML="CPU Win!";
+        document.querySelector('#cpu').innerHTML = 'CPU : '+(cpu.score);        
+          document.querySelector("#result").innerHTML="CPU Win!";
+           document.querySelector(".im").src = "paper.png";
+          document.querySelector(".im2").src = "scissors.png";
       }
   }
   else if (player.choice === options[2]) {
     if (cpu.choice === options[0]) {
+        
+        document.querySelector(".im").style.visibility="visible";
+          document.querySelector(".im2").style.visibility="visible";
+        
         console.log("CPU Win!");
         cpu.score=cpu.score+1;
         document.querySelector('#cpu').innerHTML = 'CPU : '+(cpu.score);
       document.querySelector("#result").innerHTML="CPU Win!";
+        
+        document.querySelector(".im").src = "scissors.png";
+        document.querySelector(".im2").src = "rock.jpg";
+
       
       }
       else if (cpu.choice == options[1]) {
+          
+          document.querySelector(".im").style.visibility="visible";
+          document.querySelector(".im2").style.visibility="visible";
+          
         console.log("Player Win!");
         player.score=player.score+1;
         document.querySelector('#player').innerHTML = 'Player : '+(player.score);
         document.querySelector("#result").innerHTML="You Win!";
+          
+          document.querySelector(".im").src = "scissors.png";
+          document.querySelector(".im2").src = "paper.png";
       }
       else {
+          
+          document.querySelector(".im").style.visibility="visible";
+          document.querySelector(".im2").style.visibility="visible";
+          
         console.log("Tie Game!");
    document.querySelector("#result").innerHTML="Tie Game!";
+           document.querySelector(".im").src = "scissors.png";
+           document.querySelector(".im2").src = "scissors.png";
       }
        
      
         
   }
     
-     if (player.score == 5) {
+      if (player.score == 5) {
           clearInterval()
         alert("You won the game!!");
         alert("the game will start again");
@@ -268,25 +355,29 @@ let cpu = {
 
 document.querySelector('#Rock').addEventListener('click', function() {
   play(player,cpu,"Rock",options);
+   
+    
 });
 document.querySelector('#Paper').addEventListener('click', function() {
   play(player,cpu,"Paper",options);
+ 
 });
 document.querySelector('#Scissors').addEventListener('click', function() {
   play(player,cpu,"Scissors",options);
+ 
+    
 });
       const reset = document.querySelector("#playAgain");
 reset.addEventListener('click', resetGame);
+           
 
 //resets score count and updates
 function resetGame() {
     
      location.reload();
 }
-     
-  
-          
-    
+       }
     
     </script>
+    </body>
 </html>
